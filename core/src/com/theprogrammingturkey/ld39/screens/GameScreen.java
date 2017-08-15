@@ -21,6 +21,7 @@ public class GameScreen extends Screen
 
 	private boolean canPan = false;
 	private Vector2 lastLoc = new Vector2(-1, -1);
+	private boolean panned = false;
 
 	private GuiNumBox powerGiven;
 	private GuiButton donePowerSelect;
@@ -93,6 +94,9 @@ public class GameScreen extends Screen
 			Draw2D.drawRect(200, 200, Gdx.graphics.getWidth() - 400, Gdx.graphics.getHeight() - 250, Color.GRAY, true);
 			Draw2D.drawString(Gdx.graphics.getWidth() / 2, 550, "PAUSED", 2, Color.MAROON, true);
 		}
+		
+		if(!panned)
+			Draw2D.drawString(Gdx.graphics.getWidth() / 2, 550, "Hold right click and move your mouse to pan!", 0.5f, Color.LIME, true);
 
 		super.render();
 	}
@@ -161,6 +165,7 @@ public class GameScreen extends Screen
 			}
 			else if(button == 1)
 			{
+				panned = true;
 				lastLoc.set(screenX, screenY);
 				canPan = true;
 			}
